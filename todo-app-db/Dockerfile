@@ -1,4 +1,7 @@
 FROM postgres:15.1
-WORKDIR todo-app-db
-ENV POSTGRES_PASSWORD=process.env.password
-COPY . .
+ENV POSTGRES_PASSWORD docker
+ENV POSTGRES_DB TODO
+COPY schema.sql /docker-entrypoint-initdb.d/
+RUN service postgresql start
+USER postgres
+RUN initdb
