@@ -4,11 +4,9 @@ Docker commands:
 docker build -t todo-psql .
 
 // run the container
-docker run --name todo-psql -d -p 5432:5432 todo-psql
+docker run --name todo-psql -e POSTGRES_PASSWORD=docker -e POSTGRES_USER=postgres -d -p 5432:5432 todo-psql
 docker start todo-psql
 
 // exec into the container
 docker exec -it todo-psql /bin/bash
 
-// load the db
-psql -f docker-entrypoint-initdb.d/schema.sql
