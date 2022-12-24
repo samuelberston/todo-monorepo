@@ -5,8 +5,3 @@ docker build -t todo-psql .
 
 // run the container
 docker run --name todo-psql -e POSTGRES_PASSWORD=docker -e POSTGRES_USER=postgres -it -p 5432:5432 todo-psql
-docker start todo-psql
-
-// exec into the container
-docker exec -it todo-psql /bin/bash
-
