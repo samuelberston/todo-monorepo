@@ -9,3 +9,6 @@ docker start todo-psql
 
 // exec into the container
 docker exec -it todo-psql /bin/bash
+
+// load the db
+psql -f docker-entrypoint-initdb.d/schema.sql
