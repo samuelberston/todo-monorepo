@@ -1,7 +1,7 @@
---DROP DATABASE IF EXISTS todo;
+DROP DATABASE IF EXISTS todo;
 DROP SCHEMA IF EXISTS todo CASCADE;
 
---CREATE DATABASE todo;
+CREATE DATABASE todo;
 CREATE SCHEMA todo;
 
 DROP TABLE IF EXISTS todo.todos CASCADE;
@@ -15,10 +15,10 @@ CREATE TABLE todo.todos (
   priority VARCHAR(2)
 );
 
-INSERT INTO todo.todos (task, description, date_created, date_due, priority) VALUES ('Create a todo list app with Node.js', 'implement core functionality and style', '2022-11-13T00:46:19.750Z', '', 'p2');
-INSERT INTO todo.todos (task, description, date_created, date_due, priority) VALUES ('Publish the app on GitHub', 'GitHub is a great sourcecode repository', '2022-11-13T00:48:59.204Z', '', 'p1');
-INSERT INTO todo.todos (task, description, date_created, date_due, priority) VALUES ('Deploy the app on aws', 'We love AWS', '2022-11-13T00:55:15.320Z', '', 'p3');
-INSERT INTO todo.todos (task, description, date_created, date_due, priority) VALUES ('Containerize the app with Docker', 'Eventually split up into containerized microservices', '2022-11-13T00:55:15.320Z', '', 'p4');
+INSERT INTO todo.todos (task, description, date_created, date_due, priority) VALUES ('Create a todo list app with Node.js', 'implement core functionality and style', '2022-11-13T00:46:19.750Z', '2022-12-25T21:15:34.283Z', 'p2');
+INSERT INTO todo.todos (task, description, date_created, date_due, priority) VALUES ('Publish the app on GitHub', 'GitHub is a great sourcecode repository', '2022-11-13T00:48:59.204Z', '2022-11-13T00:48:59.204Z', 'p1');
+INSERT INTO todo.todos (task, description, date_created, date_due, priority) VALUES ('Deploy the app on aws', 'We love AWS', '2022-11-13T00:55:15.320Z', '2022-11-13T00:55:15.320Z', 'p3');
+INSERT INTO todo.todos (task, description, date_created, date_due, priority) VALUES ('Containerize the app with Docker', 'Eventually split up into containerized microservices', '2022-11-13T00:55:15.320Z', '2022-11-13T00:55:15.320Z', 'p4');
 
 DROP TABLE IF EXISTS TODO.tags CASCADE;
 
@@ -46,4 +46,4 @@ INSERT INTO todo.todos_tags (todo_id, tag_id) VALUES (2, 1);
 INSERT INTO todo.todos_tags (todo_id, tag_id) VALUES (3, 1);
 INSERT INTO todo.todos_tags (todo_id, tag_id) VALUES (3, 2);
 INSERT INTO todo.todos_tags (todo_id, tag_id) VALUES (3, 3);
-INSERT INTO todo.todos_tags (todo_id, tag_id) VALUES (4, 4);
+INSERT INTO todo.todos_tags (todo_id, tag_id) VALUES (3, 4);
