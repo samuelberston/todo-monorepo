@@ -13,7 +13,7 @@ CREATE TABLE todo.todos (
   date_created VARCHAR(24) NOT NULL,
   date_due VARCHAR(24) NOT NULL,
   priority VARCHAR(2),
-  user_id VARCHAR(50) NOT NULL
+  user_id VARCHAR(60) NOT NULL
 );
 
 INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_id) VALUES ('Create a todo list app with Node.js', 'implement core functionality and style', '2022-11-13T00:46:19.750Z', '2022-12-25T21:15:34.283Z', 'p2', 'google-oauth2|113421175681730408776');
