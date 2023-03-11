@@ -1,3 +1,5 @@
+CREATE EXTENSION pgcrypto;
+
 --DROP DATABASE IF EXISTS todo;
 DROP SCHEMA IF EXISTS todo CASCADE;
 
@@ -20,6 +22,16 @@ INSERT INTO todo.todos (task, description, date_created, date_due, priority, use
 INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_id) VALUES ('Publish the app on GitHub', 'GitHub is a great sourcecode repository', '2022-11-13T00:48:59.204Z', '2022-11-13T00:48:59.204Z', 'p1', 'google-oauth2|113421175681730408776');
 INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_id) VALUES ('Deploy the app on aws', 'We love AWS', '2022-11-13T00:55:15.320Z', '2022-11-13T00:55:15.320Z', 'p3', 'google-oauth2|113421175681730408776');
 INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_id) VALUES ('Containerize the app with Docker', 'Eventually split up into containerized microservices', '2022-11-13T00:55:15.320Z', '2022-11-13T00:55:15.320Z', 'p4', 'google-oauth2|113421175681730408776');
+
+DROP TABLE IF EXISTS TODO.users CASCADE;
+
+CREATE TABLE todo.users (
+  user_key SERIAL NOT NULL,
+  user_uuid UUID PRIMARY KEY,
+  user_id VARCHAR(69) NOT NULL
+);
+
+INSERT INTO todo.users (user_uuid, user_id) VALUES (gen_random_uuid(), 'google-oauth2|113421175681730408776');
 
 DROP TABLE IF EXISTS TODO.tags CASCADE;
 
