@@ -6,6 +6,16 @@ DROP SCHEMA IF EXISTS todo CASCADE;
 --CREATE DATABASE todo;
 CREATE SCHEMA todo;
 
+DROP TABLE IF EXISTS todo.lists CASCADE;
+
+CREATE TABLE todo.lists (
+  list_key SERIAL NOT NULL,
+  list_uuid UUID PRIMARY KEY,
+  name VARCHAR(50) NOT NULL
+);
+
+INSERT INTO todo.lists (list_key, list_uuid, name) VALUES (1, gen_random_uuid(), 'default');
+
 DROP TABLE IF EXISTS todo.todos CASCADE;
 
 CREATE TABLE todo.todos (
