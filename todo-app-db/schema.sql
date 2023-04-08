@@ -38,10 +38,11 @@ DROP TABLE IF EXISTS TODO.users CASCADE;
 CREATE TABLE todo.users (
   user_key SERIAL NOT NULL,
   user_uuid UUID PRIMARY KEY,
-  user_id VARCHAR(69) UNIQUE NOT NULL
+  user_id VARCHAR(69) UNIQUE NOT NULL,
+  user_email VARCHAR(69) UNIQUE NOT NULL
 );
 
-INSERT INTO todo.users (user_uuid, user_id) VALUES ('c75321b1-084a-4a1f-9f7e-7e72bbd2ef13', 'google-oauth2|113421175681730408776');
+INSERT INTO todo.users (user_uuid, user_id, user_email) VALUES ('c75321b1-084a-4a1f-9f7e-7e72bbd2ef13', 'google-oauth2|113421175681730408776', 'samuelberston@gmail.com');
 
 DROP TABLE IF EXISTS TODO.tags CASCADE;
 
