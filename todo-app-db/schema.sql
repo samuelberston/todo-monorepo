@@ -6,33 +6,6 @@ DROP SCHEMA IF EXISTS todo CASCADE;
 --CREATE DATABASE todo;
 CREATE SCHEMA todo;
 
-DROP TABLE IF EXISTS todo.lists CASCADE;
-
-CREATE TABLE todo.lists (
-  list_key SERIAL NOT NULL,
-  list_uuid UUID PRIMARY KEY,
-  name VARCHAR(50) NOT NULL
-);
-
-INSERT INTO todo.lists (list_key, list_uuid, name) VALUES (1, gen_random_uuid(), 'default');
-
-DROP TABLE IF EXISTS todo.todos CASCADE;
-
-CREATE TABLE todo.todos (
-  todo_id SERIAL NOT NULL PRIMARY KEY,
-  task VARCHAR(50) NOT NULL,
-  description VARCHAR(1000),
-  date_created VARCHAR(24) NOT NULL,
-  date_due VARCHAR(24) NOT NULL,
-  priority VARCHAR(2),
-  user_uuid VARCHAR(60) NOT NULL
-);
-
-INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_uuid) VALUES ('Create a todo list app with Node.js', 'implement core functionality and style', '2022-11-13T00:46:19.750Z', '2022-12-25T21:15:34.283Z', 'p2', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13');
-INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_uuid) VALUES ('Publish the app on GitHub', 'GitHub is a great sourcecode repository', '2022-11-13T00:48:59.204Z', '2022-11-13T00:48:59.204Z', 'p1', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13');
-INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_uuid) VALUES ('Deploy the app on aws', 'We love AWS', '2022-11-13T00:55:15.320Z', '2022-11-13T00:55:15.320Z', 'p3', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13');
-INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_uuid) VALUES ('Containerize the app with Docker', 'Eventually split up into containerized microservices', '2022-11-13T00:55:15.320Z', '2022-11-13T00:55:15.320Z', 'p4', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13');
-
 DROP TABLE IF EXISTS TODO.users CASCADE;
 
 CREATE TABLE todo.users (
@@ -43,6 +16,38 @@ CREATE TABLE todo.users (
 );
 
 INSERT INTO todo.users (user_uuid, user_id, user_email) VALUES ('c75321b1-084a-4a1f-9f7e-7e72bbd2ef13', 'google-oauth2|113421175681730408776', 'samuelberston@gmail.com');
+
+DROP TABLE IF EXISTS todo.lists CASCADE;
+
+CREATE TABLE todo.lists (
+  list_key SERIAL NOT NULL,
+  list_uuid UUID PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  user_uuid UUID NOT NULL,
+  FOREIGN KEY (user_uuid) REFERENCES todo.users(user_uuid)
+);
+
+INSERT INTO todo.lists (list_key, list_uuid, name, user_uuid) VALUES (1, 'f3d26195-4348-457a-a036-451cf05f7d22', 'default', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13');
+
+DROP TABLE IF EXISTS todo.todos CASCADE;
+
+CREATE TABLE todo.todos (
+  todo_id SERIAL NOT NULL PRIMARY KEY,
+  task VARCHAR(50) NOT NULL,
+  description VARCHAR(1000),
+  date_created VARCHAR(24) NOT NULL,
+  date_due VARCHAR(24) NOT NULL,
+  priority VARCHAR(2),
+  user_uuid UUID NOT NULL,
+  list_uuid UUID NOT NULL,
+  FOREIGN KEY (user_uuid) REFERENCES todo.users(user_uuid),
+  FOREIGN KEY (list_uuid) REFERENCES todo.lists(list_uuid)
+);
+
+INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_uuid, list_uuid) VALUES ('Create a todo list app with Node.js', 'implement core functionality and style', '2022-11-13T00:46:19.750Z', '2022-12-25T21:15:34.283Z', 'p2', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13', 'f3d26195-4348-457a-a036-451cf05f7d22');
+INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_uuid, list_uuid) VALUES ('Publish the app on GitHub', 'GitHub is a great sourcecode repository', '2022-11-13T00:48:59.204Z', '2022-11-13T00:48:59.204Z', 'p1', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13', 'f3d26195-4348-457a-a036-451cf05f7d22');
+INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_uuid, list_uuid) VALUES ('Deploy the app on aws', 'We love AWS', '2022-11-13T00:55:15.320Z', '2022-11-13T00:55:15.320Z', 'p3', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13', 'f3d26195-4348-457a-a036-451cf05f7d22');
+INSERT INTO todo.todos (task, description, date_created, date_due, priority, user_uuid, list_uuid) VALUES ('Containerize the app with Docker', 'Eventually split up into containerized microservices', '2022-11-13T00:55:15.320Z', '2022-11-13T00:55:15.320Z', 'p4', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13', 'f3d26195-4348-457a-a036-451cf05f7d22');
 
 DROP TABLE IF EXISTS TODO.tags CASCADE;
 
