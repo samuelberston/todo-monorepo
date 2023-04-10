@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS todo.lists CASCADE;
 CREATE TABLE todo.lists (
   list_key SERIAL NOT NULL,
   list_uuid UUID PRIMARY KEY,
-  name VARCHAR(50) NOT NULL,
+  list_name VARCHAR(50) NOT NULL,
   user_uuid UUID NOT NULL,
   todo_count INT NOT NULL,
   FOREIGN KEY (user_uuid) REFERENCES todo.users(user_uuid)
 );
 
-INSERT INTO todo.lists (list_key, list_uuid, name, user_uuid, todo_count) VALUES (1, 'f3d26195-4348-457a-a036-451cf05f7d22', E'Samuel\'s List', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13', 4);
+INSERT INTO todo.lists (list_key, list_uuid, list_name, user_uuid, todo_count) VALUES (1, 'f3d26195-4348-457a-a036-451cf05f7d22', E'Samuel\'s List', 'c75321b1-084a-4a1f-9f7e-7e72bbd2ef13', 4);
 
 DROP TABLE IF EXISTS todo.todos CASCADE;
 
