@@ -1,0 +1,9 @@
+Docker commands:
+
+// build the image
+docker build -t sberston/todo-psql .
+
+docker push sberston/todo-psql
+
+// run the container
+docker run --name todo-psql -e POSTGRES_PASSWORD=docker -e POSTGRES_USER=postgres -it -p 5432:5432 sberston/todo-psql
